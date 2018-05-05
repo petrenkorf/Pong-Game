@@ -2,22 +2,24 @@
   (:require [quil.core :as q]
             [quil.middleware :as m]))
 
-(def left-racket  (atom {:x 10 :y 20 :w 15 :h 80}))
-(def right-racket (atom {:x 575 :y 20 :w 15 :h 80}))
+(def left-racket  (atom {:x 10  :y 20  :w 15 :h 80}))
+(def right-racket (atom {:x 575 :y 20  :w 15 :h 80}))
+(def ball         (atom {:x 290 :y 205 :w 20 :h 20}))
 
 (defn setup []
   (q/frame-rate 60))
 
 (defn update-state [state])
 
-(defn draw-racket [r]
+(defn draw-item [r]
   (q/rect (:x r) (:y r) (:w r) (:h r)))
 
 (defn draw-state [state]
   (q/background 0x20)
   (q/fill 0xff)
-  (draw-racket @left-racket)
-  (draw-racket @right-racket))
+  (draw-item @left-racket)
+  (draw-item @right-racket) 
+  (draw-item @ball))
 
 ; Input
 
