@@ -5,11 +5,23 @@
 (def left-racket  (atom {:x 10  :y 20  :w 15 :h 80}))
 (def right-racket (atom {:x 575 :y 20  :w 15 :h 80}))
 (def ball         (atom {:x 290 :y 205 :w 20 :h 20}))
+(def ball-dir     (atom [1 0]))
 
 (defn setup []
   (q/frame-rate 60))
 
-(defn update-state [state])
+; Update
+
+(defn next-ball [ball dir]
+  (let [spdx (first  dir)
+        spdy (second dir)]
+    (assoc ball :x (+ (:x ball) spdx)
+                :y (+ (:y ball) spdy))))
+
+(defn update-state [state]
+  (swap! ball next-ball @ball-dir))
+
+; Draw
 
 (defn draw-item [r]
   (q/rect (:x r) (:y r) (:w r) (:h r)))
