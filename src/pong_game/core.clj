@@ -12,11 +12,9 @@
 
 ; Update
 
-(defn next-ball [ball dir]
-  (let [spdx (first  dir)
-        spdy (second dir)]
-    (assoc ball :x (+ (:x ball) spdx)
-                :y (+ (:y ball) spdy))))
+(defn next-ball [ball [spdx spdy]]
+  (assoc ball :x (+ (:x ball) spdx)
+              :y (+ (:y ball) spdy)))
 
 (defn update-state [state]
   (swap! ball next-ball @ball-dir))
